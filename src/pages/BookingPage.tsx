@@ -40,6 +40,9 @@ const BookingPage = () => {
 
   const handleSubmit = () => {
     if (!validate()) return;
+    const summary = `Appointment Booking:\nService: ${service}\nDate: ${date?.toLocaleDateString()}\nTime: ${time}\nName: ${form.name}\nPhone: ${form.phone}${form.email ? `\nEmail: ${form.email}` : ""}\nAge: ${form.age}${form.message ? `\nMessage: ${form.message}` : ""}${isEmergency ? "\n⚠️ EMERGENCY REQUEST" : ""}${form.callback ? "\n📞 Callback requested" : ""}`;
+    const whatsappUrl = `https://wa.me/${CLINIC_INFO.whatsapp}?text=${encodeURIComponent(summary)}`;
+    window.open(whatsappUrl, "_blank");
     setSubmitted(true);
   };
 
