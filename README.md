@@ -1,73 +1,125 @@
-# Welcome to your Lovable project
+# 🦷 Shyam Dental Clinic Website
 
-## Project info
+A modern, responsive dental clinic website built for **Shyam Dental Clinic, Sribhumi, Assam**.
+The website helps patients easily explore services, learn about the doctor, and book appointments online.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Developed with ❤️ by **BN Tech Innovations**.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🌐 Live Website
 
-**Use Lovable**
+Coming Soon
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🏥 About the Clinic
 
-**Use your preferred IDE**
+**Shyam Dental Clinic** provides trusted dental care in **Sribhumi, Assam**.
+The clinic offers modern dental treatments with a focus on patient comfort and high-quality care.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Doctor:** Dr. Pritam Ghosh
+**Location:** Sribhumi, Assam, India
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## ✨ Features
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+* 🦷 Modern dental clinic website design
+* 📱 Fully responsive (Mobile, Tablet, Desktop)
+* 📅 Online appointment booking
+* 👨‍⚕️ Doctor information page
+* ⭐ Patient reviews section
+* ❓ FAQ section
+* 📍 Contact page with clinic details
+* ⚡ Fast and SEO-friendly
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🛠 Tech Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+**Frontend**
+
+* React
+* React Router
+* Tailwind CSS
+
+**Icons**
+
+* Lucide React
+
+**Build Tool**
+
+* Vite
+
+---
+
+## 📂 Project Structure
+
+src
+components
+pages
+assets
+lib
+public
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/shyam-dental-clinic.git
+```
+
+Go to the project folder:
+
+```bash
+cd shyam-dental-clinic
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📍 Clinic Working Hours
 
-**Use GitHub Codespaces**
+Mon – Sat: 11:00 AM – 7:00 PM
+Thursday: Closed (Except 3rd Thursday of the month)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 👨‍💻 Developed By
 
-This project is built with:
+**BN Tech Innovations**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+We build modern websites, web apps, and business solutions.
 
-## How can I deploy this project?
+🌐 Website: https://bntechinnovations.com
+📧 Email: [bntechinnovations@gmail.com](mailto:bntechinnovations@gmail.com)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Need a website for your business?
+Feel free to contact us.
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 📄 License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project is developed for **Shyam Dental Clinic**.
+Unauthorized copying or redistribution is not allowed without permission.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+⭐ If you like this project, feel free to give it a **star on GitHub**.
+# shyamdentalclinic
