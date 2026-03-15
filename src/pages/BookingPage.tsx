@@ -12,13 +12,15 @@ import { SERVICES, CLINIC_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const TIME_SLOTS = [
-  "11:00 AM", "11:30 AM",
-  "12:00 PM", "12:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
-  "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM",
+  "11:00","11:30",
+  "12:00","12:30",
+  "14:00","14:30","15:00","15:30",
+  "16:00","16:30","17:00","17:30",
+  "18:00","18:30","19:00","19:30",
 ];
 
 // Replace with your deployed Google Apps Script web app URL
-const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylYdv04DqwvBV-TmNzXdzDi5N7XvAGzSKiW8X_z9Cfs72g_KCoarrjfIKJo4Am9VeOLg/exec";
 
 const STEPS = [
   { label: "Service", icon: Stethoscope },
@@ -43,26 +45,30 @@ const BookingPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   // Fetch booked slots from Google Sheets when date changes
-  const fetchBookedSlots = useCallback(async (selectedDate: Date) => {
-    if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL") {
-      setBookedSlots([]);
-      return;
-    }
-    setLoadingSlots(true);
-    try {
-      const dateStr = selectedDate.toLocaleDateString("en-IN");
-      const res = await fetch(
-        `${GOOGLE_SCRIPT_URL}?action=getBookedSlots&date=${encodeURIComponent(dateStr)}`
-      );
-      const data = await res.json();
-      setBookedSlots(data.bookedSlots || []);
-    } catch {
-      setBookedSlots([]);
-    } finally {
-      setLoadingSlots(false);
-    }
-  }, []);
+// fetchBookedSlots ke andar ye logic check karein
+const fetchBookedSlots = useCallback(async (selectedDate: Date) => {
+  setLoadingSlots(true);
+  try {
+    // Local Timezone adjustment ke saath date bhein
+    const offset = selectedDate.getTimezoneOffset();
+    const adjustedDate = new Date(selectedDate.getTime() - (offset * 60 * 1000));
+    const dateStr = adjustedDate.toLocaleDateString("en-CA");
 
+    const res = await fetch(
+      `${GOOGLE_SCRIPT_URL}?action=getBookedSlots&date=${dateStr}`
+    );
+    const data = await res.json();
+    
+    // Normalize string matching
+    const normalizedFromAPI = (data.bookedSlots || []).map((slot: string) => slot.trim());
+    setBookedSlots(normalizedFromAPI);
+  } catch (err) {
+    console.error("Fetch error:", err);
+    setBookedSlots([]);
+  } finally {
+    setLoadingSlots(false);
+  }
+}, []);
   useEffect(() => {
     if (date) {
       setTime("");
@@ -70,7 +76,9 @@ const BookingPage = () => {
     }
   }, [date, fetchBookedSlots]);
 
-  const availableSlots = TIME_SLOTS.filter((t) => !bookedSlots.includes(t));
+const availableSlots = TIME_SLOTS.filter((slot) => {
+  return !bookedSlots.includes(slot);
+});
 
   const canGoNext = () => {
     switch (step) {
@@ -105,7 +113,7 @@ const BookingPage = () => {
 
   const handleSubmit = async () => {
     setSubmitting(true);
-    const dateStr = date!.toLocaleDateString("en-IN");
+    const dateStr = date!.toLocaleDateString("en-CA");
 
     const bookingData = {
       name: form.name,
@@ -117,12 +125,22 @@ const BookingPage = () => {
     };
 
     // Save to Google Sheets
-    if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL") {
+    
       try {
+        const formData = new URLSearchParams();
+
+formData.append("name", form.name);
+formData.append("phone", form.phone);
+formData.append("service", service);
+formData.append("date", dateStr);
+formData.append("time", time);
+formData.append("message", form.message);
+
         const res = await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
-          headers: { "Content-Type": "text/plain" },
-          body: JSON.stringify({ action: "bookAppointment", ...bookingData }),
+          // headers: { "Content-Type": "application/json" },
+          // body: JSON.stringify({ action: "bookAppointment", ...bookingData }),
+          body: formData
         });
         const result = await res.json();
         if (result.status === "conflict") {
@@ -135,7 +153,7 @@ const BookingPage = () => {
       } catch {
         // Continue to WhatsApp even if sheet save fails
       }
-    }
+    
 
     // Redirect to WhatsApp
     const summary = `📅 *Appointment Booking*\n\n👤 Name: ${form.name}\n📱 Phone: ${form.phone}\n🦷 Service: ${service}\n📆 Date: ${dateStr}\n🕐 Time: ${time}${form.message ? `\n💬 Message: ${form.message}` : ""}`;
@@ -148,7 +166,7 @@ const BookingPage = () => {
 
   // Confirmation page
   if (submitted) {
-    const dateStr = date!.toLocaleDateString("en-IN");
+    const dateStr = date!.toISOString().split("T")[0];
     return (
       <>
         <SEOHead title="Booking Confirmed | Shyam Dental Clinic Sribhumi" description="Your appointment booking at Shyam Dental Clinic Sribhumi has been confirmed." path="/booking" />

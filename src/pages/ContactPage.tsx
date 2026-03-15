@@ -68,9 +68,9 @@ const ContactPage = () => {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-dental-blue-light"><Clock className="h-5 w-5 text-primary" /></div>
                     <div>
                       <p className="font-semibold text-foreground">Clinic Hours</p>
-                      <p className="text-sm text-muted-foreground">Mon–Fri: {CLINIC_INFO.hours.weekdays}</p>
-                      <p className="text-sm text-muted-foreground">Sat: {CLINIC_INFO.hours.saturday}</p>
-                      <p className="text-sm text-muted-foreground">Sun: {CLINIC_INFO.hours.sunday}</p>
+                      <p className="text-sm text-muted-foreground">Mon–sunday: {CLINIC_INFO.hours.weekdays}</p>
+                      <p className="text-sm text-muted-foreground">Thu: {CLINIC_INFO.hours.thursday}</p>
+                      <p className="text-sm text-muted-foreground">Thu: {CLINIC_INFO.hours.thursday} 3rd of every month</p>
                     </div>
                   </div>
                 </div>

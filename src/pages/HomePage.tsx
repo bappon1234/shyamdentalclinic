@@ -221,9 +221,9 @@ const HomePage = () => (
               <Clock className="mt-1 h-5 w-5 shrink-0 text-primary" />
               <div>
                 <p className="font-display font-semibold text-foreground">Opening Hours</p>
-                <p className="text-sm text-muted-foreground">Mon–Fri: {CLINIC_INFO.hours.weekdays}</p>
-                <p className="text-sm text-muted-foreground">Saturday: {CLINIC_INFO.hours.saturday}</p>
-                <p className="text-sm text-muted-foreground">Sunday: {CLINIC_INFO.hours.sunday}</p>
+                <p className="text-sm text-muted-foreground">Mon–Sun: {CLINIC_INFO.hours.weekdays}</p>
+                <p className="text-sm text-muted-foreground">Thursday: {CLINIC_INFO.hours.thursday}</p>
+                <p className="text-sm text-muted-foreground">Thursday: {CLINIC_INFO.hours.thursday} 3rd of every month</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">

@@ -31,7 +31,7 @@ const AboutPage = () => (
             <h1 className="mb-4 font-display text-3xl font-bold text-foreground md:text-4xl">
               Dr. Pritam Ghosh
             </h1>
-            <p className="mb-2 text-lg font-medium text-primary">Dental Surgeon & Implant Specialist</p>
+            <p className="mb-2 text-lg font-medium text-primary">Dental Surgeon & Implant Specialist || ASDC - 2188A</p>
             <p className="mb-6 text-muted-foreground leading-relaxed">
               Dr. Pritam Ghosh is a highly skilled dental surgeon leading Shyam Dental Clinic & Implant Center
               in Sribhumi, Assam. With extensive training in modern dentistry, dental implantology, and cosmetic

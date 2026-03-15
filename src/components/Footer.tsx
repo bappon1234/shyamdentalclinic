@@ -58,9 +58,9 @@ const Footer = () => (
             <div className="flex items-start gap-2">
               <Clock className="mt-0.5 h-4 w-4 shrink-0" />
               <div>
-                <p>Mon–Fri: {CLINIC_INFO.hours.weekdays}</p>
-                <p>Sat: {CLINIC_INFO.hours.saturday}</p>
-                <p>Sun: {CLINIC_INFO.hours.sunday}</p>
+                <p>Mon–Sun: {CLINIC_INFO.hours.weekdays}</p>
+                <p>Thu: {CLINIC_INFO.hours.thursday}</p>
+                <p>Thu: {CLINIC_INFO.hours.thursday} 3rd of every month</p>
               </div>
             </div>
           </div>
@@ -70,6 +70,40 @@ const Footer = () => (
       <div className="mt-12 border-t border-primary-foreground/20 pt-6 text-center text-sm opacity-60">
         <p>© {new Date().getFullYear()} {CLINIC_INFO.name}. All rights reserved.</p>
         <p className="mt-1">Best Dental Clinic in Sribhumi, Assam</p>
+
+        {/* Developer Credit */}
+        <div className="mt-4 flex flex-col items-center gap-2">
+
+          <div className="flex items-center gap-2">
+
+            {/* BN Tech Logo */}
+            <img
+              src="/src/assets/bnlogo.png"
+              alt="BN Tech Innovations"
+              className="h-8 w-30"
+            />
+
+            {/* Developer Text */}
+            <p className="text-sm font-semibold tracking-wide">
+              Website Developed by{" "}
+              <a
+                href="https://bntech-innovations.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-cyan-400 hover:text-cyan-300"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                BN Tech Innovations
+              </a>
+            </p>
+
+          </div>
+
+          <p className="text-xs opacity-100">
+            Need a website for your business? Contact BN Tech Innovations
+          </p>
+
+        </div>
       </div>
     </div>
   </footer>
