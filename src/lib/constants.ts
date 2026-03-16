@@ -4,7 +4,7 @@ export const CLINIC_INFO = {
   doctor: "Dr. Pritam Ghosh",
   phone: "+91 8724071677",
   whatsapp: "918724071677",
-  email: "info@shyamdentalclinic.com",
+  email: "contactshyamdentalclinic@gmail.com",
   address: "Main Road, oppo: Veterinary Hospital, Sribhumi, Assam, India",
   mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14363.47!2d92.35!3d24.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSribhumi%2C%20Assam!5e0!3m2!1sen!2sin!4v1700000000000",
   hours: {
