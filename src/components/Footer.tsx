@@ -4,7 +4,7 @@ import { CLINIC_INFO } from "@/lib/constants";
 
 const Footer = () => (
   <footer className="border-t border-border bg-foreground text-primary-foreground">
-    <div className="container-dental section-padding pb-8">
+    <div className="container-dental section-padding pb-22 md:pb-8">
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div>
@@ -60,7 +60,7 @@ const Footer = () => (
               <div>
                 <p>Mon–Sun: {CLINIC_INFO.hours.weekdays}</p>
                 <p>Thu: {CLINIC_INFO.hours.thursday}</p>
-                <p>Thu: {CLINIC_INFO.hours.thursday} 3rd of every month</p>
+                <p> 3rd of every month: closed</p>
               </div>
             </div>
           </div>
@@ -72,16 +72,22 @@ const Footer = () => (
         <p className="mt-1">Best Dental Clinic in Sribhumi, Assam</p>
 
         {/* Developer Credit */}
-        <div className="mt-4 flex flex-col items-center gap-2">
+        <div className="mt-4 flex flex-col items-center gap-9 md:gap-3">
 
           <div className="flex items-center gap-2">
 
             {/* BN Tech Logo */}
-            <img
-              src="/images/bnlogo.png"
-              alt="BN Tech Innovations"
-              className="h-8 w-30"
-            />
+            <a
+              href="https://bntech-innovations.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/src/assets/bnlogo.png"
+                alt="BN Tech Innovations"
+                className="h-8 w-30 cursor-pointer"
+              />
+            </a>
 
             {/* Developer Text */}
             <p className="text-sm font-semibold tracking-wide">

@@ -70,7 +70,7 @@ const ContactPage = () => {
                       <p className="font-semibold text-foreground">Clinic Hours</p>
                       <p className="text-sm text-muted-foreground">Mon–sunday: {CLINIC_INFO.hours.weekdays}</p>
                       <p className="text-sm text-muted-foreground">Thu: {CLINIC_INFO.hours.thursday}</p>
-                      <p className="text-sm text-muted-foreground">Thu: {CLINIC_INFO.hours.thursday} 3rd of every month</p>
+                      <p className="text-sm text-muted-foreground"> 3rd of every month: closed</p>
                     </div>
                   </div>
                 </div>

@@ -12,12 +12,12 @@ import { SERVICES, CLINIC_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const TIME_SLOTS = [
-  "11:00","11:30",
-  "12:00","12:30",
-  "13:00","13:30",
-  "14:00","14:30","15:00","15:30",
-  "16:00","16:30","17:00","17:30",
-  "18:00","18:30","19:00","19:30",
+  "11:00", "11:30",
+  "12:00", "12:30",
+  "13:00", "13:30",
+  "14:00", "14:30", "15:00", "15:30",
+  "16:00", "16:30", "17:00", "17:30",
+  "18:00", "18:30", "19:00", "19:30",
 ];
 
 // Replace with your deployed Google Apps Script web app URL
@@ -46,30 +46,30 @@ const BookingPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   // Fetch booked slots from Google Sheets when date changes
-// fetchBookedSlots ke andar ye logic check karein
-const fetchBookedSlots = useCallback(async (selectedDate: Date) => {
-  setLoadingSlots(true);
-  try {
-    // Local Timezone adjustment ke saath date bhein
-    const offset = selectedDate.getTimezoneOffset();
-    const adjustedDate = new Date(selectedDate.getTime() - (offset * 60 * 1000));
-    const dateStr = adjustedDate.toLocaleDateString("en-CA");
+  // fetchBookedSlots ke andar ye logic check karein
+  const fetchBookedSlots = useCallback(async (selectedDate: Date) => {
+    setLoadingSlots(true);
+    try {
+      // Local Timezone adjustment ke saath date bhein
+      const offset = selectedDate.getTimezoneOffset();
+      const adjustedDate = new Date(selectedDate.getTime() - (offset * 60 * 1000));
+      const dateStr = adjustedDate.toLocaleDateString("en-CA");
 
-    const res = await fetch(
-      `${GOOGLE_SCRIPT_URL}?action=getBookedSlots&date=${dateStr}`
-    );
-    const data = await res.json();
-    
-    // Normalize string matching
-    const normalizedFromAPI = (data.bookedSlots || []).map((slot: string) => slot.trim());
-    setBookedSlots(normalizedFromAPI);
-  } catch (err) {
-    console.error("Fetch error:", err);
-    setBookedSlots([]);
-  } finally {
-    setLoadingSlots(false);
-  }
-}, []);
+      const res = await fetch(
+        `${GOOGLE_SCRIPT_URL}?action=getBookedSlots&date=${dateStr}`
+      );
+      const data = await res.json();
+
+      // Normalize string matching
+      const normalizedFromAPI = (data.bookedSlots || []).map((slot: string) => slot.trim());
+      setBookedSlots(normalizedFromAPI);
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setBookedSlots([]);
+    } finally {
+      setLoadingSlots(false);
+    }
+  }, []);
   useEffect(() => {
     if (date) {
       setTime("");
@@ -77,9 +77,9 @@ const fetchBookedSlots = useCallback(async (selectedDate: Date) => {
     }
   }, [date, fetchBookedSlots]);
 
-const availableSlots = TIME_SLOTS.filter((slot) => {
-  return !bookedSlots.includes(slot);
-});
+  const availableSlots = TIME_SLOTS.filter((slot) => {
+    return !bookedSlots.includes(slot);
+  });
 
   const canGoNext = () => {
     switch (step) {
@@ -126,35 +126,35 @@ const availableSlots = TIME_SLOTS.filter((slot) => {
     };
 
     // Save to Google Sheets
-    
-      try {
-        const formData = new URLSearchParams();
 
-formData.append("name", form.name);
-formData.append("phone", form.phone);
-formData.append("service", service);
-formData.append("date", dateStr);
-formData.append("time", time);
-formData.append("message", form.message);
+    try {
+      const formData = new URLSearchParams();
 
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          // headers: { "Content-Type": "application/json" },
-          // body: JSON.stringify({ action: "bookAppointment", ...bookingData }),
-          body: formData
-        });
-        const result = await res.json();
-        if (result.status === "conflict") {
-          setErrors({ time: "This slot was just booked. Please choose another." });
-          await fetchBookedSlots(date!);
-          setStep(1);
-          setSubmitting(false);
-          return;
-        }
-      } catch {
-        // Continue to WhatsApp even if sheet save fails
+      formData.append("name", form.name);
+      formData.append("phone", form.phone);
+      formData.append("service", service);
+      formData.append("date", dateStr);
+      formData.append("time", time);
+      formData.append("message", form.message);
+
+      const res = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        // headers: { "Content-Type": "application/json" },
+        // body: JSON.stringify({ action: "bookAppointment", ...bookingData }),
+        body: formData
+      });
+      const result = await res.json();
+      if (result.status === "conflict") {
+        setErrors({ time: "This slot was just booked. Please choose another." });
+        await fetchBookedSlots(date!);
+        setStep(1);
+        setSubmitting(false);
+        return;
       }
-    
+    } catch {
+      // Continue to WhatsApp even if sheet save fails
+    }
+
 
     // Redirect to WhatsApp
     const summary = `📅 *Appointment Booking*\n\n👤 Name: ${form.name}\n📱 Phone: ${form.phone}\n🦷 Service: ${service}\n📆 Date: ${dateStr}\n🕐 Time: ${time}${form.message ? `\n💬 Message: ${form.message}` : ""}`;
@@ -285,10 +285,13 @@ formData.append("message", form.message);
                           mode="single"
                           selected={date}
                           onSelect={(d) => setDate(d)}
-                          disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0)) || d.getDay() === 0}
+                          disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0)) || d.getDay() === 4 || d.getDate() === 3}
                           className="pointer-events-auto rounded-xl border border-border p-3"
                         />
                       </div>
+                      <p className="mt-2 text-center text-sm text-muted-foreground">
+                        Thursday and the 3rd of every month are closed. Booking is not available on These days.
+                      </p>
                       {errors.date && <p className="mt-1 text-center text-xs text-destructive">{errors.date}</p>}
                     </div>
 
