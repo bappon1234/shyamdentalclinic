@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import SEOHead from "@/components/SEOHead";
 import heroImg from "@/assets/hero-clinic.jpg";
 import clinicImg from "@/assets/clinic-interior.jpg";
-import doctorImg from "@/assets/doctor-portrait.jpg";
+import doctorImg from "@/assets/doctor.png";
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 
