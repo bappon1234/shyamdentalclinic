@@ -83,7 +83,7 @@ const Footer = () => (
               rel="noopener noreferrer"
             >
               <img
-                src="/src/assets/bnlogo.png"
+                src="/images/bnlogo.png"
                 alt="BN Tech Innovations"
                 className="h-8 w-30 cursor-pointer"
               />
